@@ -1,0 +1,20 @@
+module traffic_light_controller_tb;
+  reg clk;
+  reg reset;
+  wire red;
+  wire green;
+  wire yellow;
+  traffic_light_controller dut (.clk(clk),.reset(reset),.red(red),.green(green),.yellow(yellow));
+  always #5 clk = ~clk;
+   initial 
+   begin
+     $dumpfile("traffic_light_controller.vcd");
+     $dumpvars(0, traffic_light_controller_tb);
+     clk = 0;
+     reset = 1;
+      #10;
+     reset = 0;
+      #100;
+     $finish;
+    end
+endmodule
